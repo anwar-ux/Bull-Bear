@@ -18,7 +18,7 @@ class _HomeScreenState extends State<UserBottomNavigation> {
 
   int _currentIndex = 0;
   final List<Widget> _children = [
-  const HomePage(),
+   HomePage(),
   const WatchlistPage()
   ];
 

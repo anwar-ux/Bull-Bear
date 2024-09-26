@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 
 Future<List<Stock>> fetchStockData(searchKey) async {
   var apiKey = 'C26SEYRPF0RL77R3';
-  var optional = 'AAPL';
-  var url = Uri.parse('https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${searchKey ?? optional}&apikey=$apiKey');
+  var url = Uri.parse('https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=$searchKey&apikey=$apiKey');
   debugPrint('Search URL: $url');
   try {
     var response = await http.get(url);

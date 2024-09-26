@@ -4,6 +4,7 @@ import 'package:bullbear/features/presentation/widgets/alertdialog_custom.dart';
 import 'package:bullbear/features/presentation/widgets/snak_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class WatchlistPage extends StatelessWidget {
   const WatchlistPage({super.key});
@@ -11,19 +12,29 @@ class WatchlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title:const Text('Watchlist'),
+        centerTitle: true,
+      ),
       body: BlocProvider(
         create: (context) => LocalStockDataBloc()..add(LoadLocalData()),
         child: BlocConsumer<LocalStockDataBloc, LocalStockDataState>(
           listener: (context, state) {},
           builder: (context, state) {
             if (state is LocalStockDataLoaded) {
+              if (state.data.isEmpty) {
+                return Center(
+                  child:Lottie.asset('assets/stock.json', width: 150,
+                height: 150,
+                fit: BoxFit.cover,)
+                );
+              }
               return ListView.builder(
                 itemCount: state.data.length,
                 itemBuilder: (context, index) {
                   final data = state.data[index];
                   return Padding(
-                    padding: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(8),
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.11,
                       width: MediaQuery.of(context).size.width * 0.90,
@@ -51,7 +62,7 @@ class WatchlistPage extends StatelessWidget {
                                   firstButtonText: 'Cancel',
                                   secondButtonAction: () {
                                     context.read<LocalStockDataBloc>().add(DeleteData(data.id!));
-                                     showCustomSnackbar(context, 'Removed from watchlist', 'The stock removed from watchlist', Colors.green);
+                                    showCustomSnackbar(context, 'Removed from watchlist', 'The stock removed from watchlist', Colors.green);
                                     context.read<LocalStockDataBloc>().add(LoadLocalData());
                                     Navigator.pop(context);
                                   },

@@ -54,7 +54,7 @@ class CustomTextfield extends StatelessWidget {
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(8),
+                Radius.circular(30),
               ),
               borderSide: BorderSide(
                 color: Color.fromARGB(255, 214, 214, 214),
@@ -62,7 +62,7 @@ class CustomTextfield extends StatelessWidget {
             ),
             focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(8),
+                Radius.circular(30),
               ),
               borderSide: BorderSide(
                 color: Color.fromARGB(255, 214, 214, 214),
@@ -70,7 +70,7 @@ class CustomTextfield extends StatelessWidget {
             ),
             errorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(8),
+                Radius.circular(30),
               ),
               borderSide: BorderSide(
                 color: Color.fromARGB(255, 214, 214, 214),
@@ -78,7 +78,7 @@ class CustomTextfield extends StatelessWidget {
             ),
             focusedErrorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(8),
+                Radius.circular(30),
               ),
               borderSide: BorderSide(
                 color: Color.fromARGB(255, 214, 214, 214),
@@ -86,7 +86,7 @@ class CustomTextfield extends StatelessWidget {
             ),
             disabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(8),
+                Radius.circular(30),
               ),
               borderSide: BorderSide(
                 color: Color.fromARGB(255, 214, 214, 214),

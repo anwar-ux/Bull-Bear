@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
+          textTheme: GoogleFonts.urbanistTextTheme(Theme.of(context).textTheme),
         ),
         home:const UserBottomNavigation(),
       ),

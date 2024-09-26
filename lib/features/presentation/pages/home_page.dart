@@ -9,22 +9,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  TextEditingController searchEdit = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(110),
+        preferredSize: const Size.fromHeight(140),
         child: AppBar(
-          title: Text('Home'),
+          title: const Text('Home'),
+          centerTitle: true,
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(100),
+            preferredSize: const Size.fromHeight(100),
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: CustomTextfield(
                 hint: 'Search...',
                 onChanged: (value) => context.read<GetServerDataBloc>().add(LoadServerData(value)),
+                controller: searchEdit,
               ),
             ),
           ),
@@ -34,22 +36,18 @@ class HomePage extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           if (state is GetServerDataLoaded) {
-            if (state.data.length==0) {
+            if (searchEdit.text.isEmpty) {
               return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LottieBuilder.asset('assets/no_data_animation.json'),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'No results found!',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+                child: Lottie.asset('assets/stock.json',width:  150,
+                height: 150,
+                fit: BoxFit.cover,),
               );
             }
-            return ListView.builder(
+            return searchEdit.text.isEmpty?Center(
+                child: Lottie.asset('assets/stock.json', width: 150,
+                height: 150,
+                fit: BoxFit.cover,),
+              ): ListView.builder(
               itemCount: state.data.length,
               itemBuilder: (context, index) {
                 final data = state.data[index];
@@ -121,11 +119,15 @@ class HomePage extends StatelessWidget {
             );
           } else if (state is GetServerDataInitial) {
             return Center(
-              child: LottieBuilder.asset('assets/Animation - 1727270222094.json'),
+              child: Lottie.asset('assets/stock.json',width:  150,
+                height: 150,
+                fit: BoxFit.cover,),
             );
           }
           return Center(
-            child: LottieBuilder.asset('assets/Animation - 1727270222094.json'),
+            child: Lottie.asset('assets/stock.json',width:  150,
+                height: 150,
+                fit: BoxFit.cover,),
           );
         },
       ),
